@@ -38,16 +38,9 @@ export default function ProductModal() {
 
   const isSaving = createMut.isPending || updateMut.isPending;
 
-  const isValid = useMemo(() => {
-    const nameOk = form.name.trim().length > 0;
-    const priceOk = Number.isFinite(form.price) && form.price >= 0;
-    const stockOk = Number.isFinite(form.stock) && form.stock >= 0;
-    const statusOk = form.status === "ACTIVE" || form.status === "INACTIVE";
-    return nameOk && priceOk && stockOk && statusOk;
-  }, [form]);
+
 
   const onSubmit = async () => {
-    if (!isValid || isSaving) return;
     if (editing) {
       await updateMut.mutateAsync({ id: editing.id, patch: form });
     } else {
@@ -117,18 +110,15 @@ export default function ProductModal() {
                 className="m-2"
               />
 
-              <Select
-                label="Status"
-                selectedKeys={[form.status]}
-                className="m-2 backdrop-blur-3xl"
-              >
-                <SelectItem key="ACTIVE" className="text-left">
-                  ACTIVE
-                </SelectItem>
-                <SelectItem key="INACTIVE" className="text-left">
-                  INACTIVE
-                </SelectItem>
-              </Select>
+              <div className="m-2 flex flex-col border border-slate-200 dark:border-slate-700">
+                <Select
+                  label="Status"
+                  selectedKeys={[form.status]}
+                  className="max-w-xs">
+                  <SelectItem key="ACTIVE" >ACTIVE</SelectItem>
+                  <SelectItem key="INACTIVE" >INACTIVE</SelectItem>
+                </Select>
+              </div>
             </div>
           </ModalBody>
 
@@ -137,7 +127,6 @@ export default function ProductModal() {
               variant="light"
               onPress={closeModal}
               disabled={isSaving}
-              className="rounded-xl"
             >
               Cancelar
             </Button>
@@ -145,8 +134,6 @@ export default function ProductModal() {
               color="primary"
               type="submit"
               isLoading={isSaving}
-              isDisabled={!isValid || isSaving}
-              className="rounded-xl"
             >
               {editing ? "Salvar" : "Criar"}
             </Button>

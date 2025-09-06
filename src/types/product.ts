@@ -4,5 +4,4 @@ export type Product = {
   price: number;
   stock: number;
   status: "ACTIVE" | "INACTIVE";
-  createdAt: string;
 };

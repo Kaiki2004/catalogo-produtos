@@ -7,7 +7,6 @@ let PRODUCTS: Product[] = [
     price: 299.9,
     stock: 12,
     status: "ACTIVE",
-    createdAt: new Date().toISOString(),
   },
   {
     id: crypto.randomUUID(),
@@ -15,7 +14,6 @@ let PRODUCTS: Product[] = [
     price: 159.9,
     stock: 0,
     status: "INACTIVE",
-    createdAt: new Date().toISOString(),
   },
 ];
 
@@ -31,11 +29,10 @@ export async function listProducts(params: ListParams = {}): Promise<Product[]> 
   });
 }
 
-export async function createProduct(input: Omit<Product, "id" | "createdAt">) {
+export async function createProduct(input: Omit<Product, "id">) {
   const prod: Product = {
     ...input,
     id: crypto.randomUUID(),
-    createdAt: new Date().toISOString(),
   };
   PRODUCTS.unshift(prod);
   return prod;

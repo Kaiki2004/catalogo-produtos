@@ -86,7 +86,6 @@ export const useProductsUi = create<ProductsUiState>()(
     {
       name: "products-ui",
       storage: createJSONStorage(() => localStorage),
-      // persiste só os filtros
       partialize: (s) => ({ search: s.search, status: s.status }),
     }
   )

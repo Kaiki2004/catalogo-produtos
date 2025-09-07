@@ -20,7 +20,7 @@ type Props = {
   onRetry: () => void;
   onEdit: (p: Product) => void;
   onAskDelete: (p: Product) => void;
-  skeletonRows?: number; // opcional
+  skeletonRows?: number; 
 };
 
 export default function ProductsTable({

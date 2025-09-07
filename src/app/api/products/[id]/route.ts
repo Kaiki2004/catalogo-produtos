@@ -2,9 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { getProduct, updateProduct, deleteProduct } from "@/lib/products";
 import type { Product } from "@/types/product";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
-export const runtime = "nodejs";
 
 export async function PATCH(
   req: NextRequest,
@@ -20,11 +17,11 @@ export async function PATCH(
     const patch = (await req.json()) as Partial<Omit<Product, "id" | "createdAt">>;
 
     if (patch.price !== undefined && !Number.isFinite(patch.price))
-      return NextResponse.json({ error: "price must be a number" }, { status: 400 });
+      return NextResponse.json({ error: "O preço deve ser um número" }, { status: 400 });
     if (patch.stock !== undefined && !Number.isFinite(patch.stock))
-      return NextResponse.json({ error: "stock must be a number" }, { status: 400 });
+      return NextResponse.json({ error: "O estoque deve ser um número" }, { status: 400 });
     if (patch.status && !["ACTIVE", "INACTIVE"].includes(patch.status))
-      return NextResponse.json({ error: "invalid status" }, { status: 400 });
+      return NextResponse.json({ error: "O status deve ser ACTIVE ou INACTIVE" }, { status: 400 });
 
     const updated = await updateProduct(id, patch);
     return NextResponse.json(updated, { status: 200 });

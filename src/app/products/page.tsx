@@ -9,27 +9,33 @@ import DeleteModal from "./components/DeleteModal";
 import { useProductsUi } from "@/store/useProductsUi";
 
 export default function ProductsPage() {
-  const { search, status, openEdit, askDelete } = useProductsUi();
+  const { search, status, openEdit, askDelete, isModalOpen } = useProductsUi();
   const page = 1;
 
-  const { data, isLoading, isError, isFetching, refetch } = useQuery({
+  const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ["products", { search, status, page }],
     queryFn: () => fetchProducts({ search, status }),
   });
 
   return (
-    <main className="mx-auto max-w-5xl p-6 space-y-6">
-      <Filters />
-      <ProductsTable
-        data={data}
-        isLoading={isLoading}
-        isError={isError}
-        onRetry={refetch}
-        onEdit={openEdit}
-        onAskDelete={askDelete}
-      />
-      <ProductModal />
+    <div className="p-4">
+      {isModalOpen ? (
+        <ProductModal />
+      ) : (
+        <>
+          <Filters />
+          <ProductsTable
+            data={data}
+            isLoading={isLoading}
+            isError={isError}
+            onRetry={refetch}
+            onEdit={openEdit}
+            onAskDelete={askDelete}
+          />
+        </>
+      )}
+
       <DeleteModal />
-    </main>
+    </div>
   );
 }

@@ -19,7 +19,7 @@ export default function Filters() {
 
       <Select
         label="Status"
-        className=" w-[20%] h-19 border rounded-2xl p-2 border-gray-300 hover:bg-gray-200"
+        className=" w-[10%] h-19 border rounded-2xl p-2 border-gray-300 hover:bg-gray-200"
         selectedKeys={new Set([status])}
         onSelectionChange={(keys) => {const first = Array.from(keys)[0] ?? "";setStatus(first as StatusOpt);}}
         

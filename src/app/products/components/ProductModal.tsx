@@ -12,7 +12,6 @@ import {
   SelectItem,
 } from "@heroui/react";
 import { useProductsUi } from "@/store/useProductsUi";
-import { useMemo } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createProductApi, updateProductApi } from "@/lib/api";
 import type { Product } from "@/types/product";
@@ -110,11 +109,11 @@ export default function ProductModal() {
                 className="m-2"
               />
 
-              <div className="m-2 flex flex-col border border-slate-200 dark:border-slate-700">
+              <div className="m-2 text-left w-[40%]">
                 <Select
                   label="Status"
                   selectedKeys={[form.status]}
-                  className="max-w-xs">
+                  className="bg-white">
                   <SelectItem key="ACTIVE" >ACTIVE</SelectItem>
                   <SelectItem key="INACTIVE" >INACTIVE</SelectItem>
                 </Select>

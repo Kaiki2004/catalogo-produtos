@@ -17,6 +17,14 @@ let PRODUCTS: Product[] = [
     status: "INACTIVE",
     createdAt: new Date().toISOString(),
   },
+  {
+    id: "3",
+    name: "Computador",
+    price: 1509.9,
+    stock: 10,
+    status: "ACTIVE",
+    createdAt: new Date().toISOString(),
+  },
 ];
 
 type NewProduct = {

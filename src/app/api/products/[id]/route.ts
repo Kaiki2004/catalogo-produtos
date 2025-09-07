@@ -1,4 +1,3 @@
-// app/api/products/[id]/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { getProduct, updateProduct, deleteProduct } from "@/lib/products";
 import type { Product } from "@/types/product";
@@ -7,13 +6,12 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 export const runtime = "nodejs";
 
-// PATCH /api/products/:id
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: Promise<{ id: string }> }   // <- Promise aqui
+  { params }: { params: Promise<{ id: string }> }   
 ) {
   try {
-    const { id } = await params;                     // <- aguarde aqui
+    const { id } = await params;                    
     if (!id) return NextResponse.json({ error: "Missing id" }, { status: 400 });
 
     const current = await getProduct(id);
@@ -36,13 +34,12 @@ export async function PATCH(
   }
 }
 
-// DELETE /api/products/:id
 export async function DELETE(
   _req: NextRequest,
-  { params }: { params: Promise<{ id: string }> }   // <- Promise aqui
+  { params }: { params: Promise<{ id: string }> }   
 ) {
   try {
-    const { id } = await params;                     // <- aguarde aqui
+    const { id } = await params;                    
     if (!id) return NextResponse.json({ error: "Missing id" }, { status: 400 });
 
     const current = await getProduct(id);

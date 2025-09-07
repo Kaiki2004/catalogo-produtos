@@ -1,4 +1,3 @@
-// app/products/components/ProductsTable.tsx
 "use client";
 
 import {
@@ -102,11 +101,10 @@ export default function ProductsTable({
             <TableCell>{p.stock}</TableCell>
             <TableCell>
               <span
-                className={`px-2 py-1 rounded-full text-xs font-medium ${
-                  p.status === "ACTIVE"
+                className={`px-2 py-1 rounded-full text-xs font-medium ${p.status === "ACTIVE"
                     ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300"
                     : "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300"
-                }`}
+                  }`}
               >
                 {p.status}
               </span>
